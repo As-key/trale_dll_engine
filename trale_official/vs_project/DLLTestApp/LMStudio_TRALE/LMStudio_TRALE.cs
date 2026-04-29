@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -6,14 +7,25 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using TraleDLLManager;
 
 namespace LMStudio_TRALE
 {
     public class TraleTranslatorDLL : InterfaceTraleDLL
     {
-        private readonly TraleClientWebApi client = new TraleClientWebApi();
+        private readonly ServiceProvider provider;
+        private readonly TraleClientWebApi traleClientWebApi;
+
+        public TraleTranslatorDLL()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            services.AddHttpClient("LMStudio_TRALE");
+            services.AddSingleton<TraleClientWebApi>();
+
+            provider = services.BuildServiceProvider();
+            traleClientWebApi = provider.GetRequiredService<TraleClientWebApi>();
+        }
 
         public string GetDllName()
         {
@@ -26,12 +38,14 @@ namespace LMStudio_TRALE
             string dst_lang,
             Dictionary<string, string> options)
         {
-            return client.Translate(srs_lang, source, dst_lang, options);
+            return traleClientWebApi.Translate(srs_lang, source, dst_lang, options);
         }
     }
 
     public class TraleClientWebApi
     {
+        private readonly IHttpClientFactory clientFactory;
+
         private class ModelsResponse
         {
             [JsonPropertyName("data")]
@@ -66,6 +80,11 @@ namespace LMStudio_TRALE
         {
             [JsonPropertyName("message")]
             public string message { get; set; }
+        }
+
+        public TraleClientWebApi(IHttpClientFactory clientFactory)
+        {
+            this.clientFactory = clientFactory;
         }
 
         public string[] Translate(
@@ -115,89 +134,93 @@ namespace LMStudio_TRALE
 
             try
             {
-                using (var http = new HttpClient())
+                HttpClient http = clientFactory.CreateClient("LMStudio_TRALE");
+                http.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
+
+                if (string.IsNullOrWhiteSpace(model) && autoUseFirstModel)
+                    model = GetFirstLoadedModel(http, baseUrl);
+
+                if (string.IsNullOrWhiteSpace(model))
                 {
-                    http.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
-
-                    if (string.IsNullOrWhiteSpace(model) && autoUseFirstModel)
-                        model = GetFirstLoadedModel(http, baseUrl);
-
-                    if (string.IsNullOrWhiteSpace(model))
-                    {
-                        ret[0] = "";
-                        ret[1] = "LM Studio model is not specified or loaded.";
-                        return ret;
-                    }
-
-                    string prompt = BuildTranslateGemmaPrompt(
-                        sourceLang,
-                        targetLang,
-                        source,
-                        includeBos,
-                        bosToken);
-
-                    var requestObj = new
-                    {
-                        model = model,
-                        prompt = prompt,
-                        stream = false,
-                        temperature = temperature,
-                        top_p = topP,
-                        max_tokens = maxTokens,
-                        stop = new[]
-                        {
-                            "<end_of_turn>",
-                            "<eos>"
-                        }
-                    };
-
-                    string requestJson = JsonSerializer.Serialize(requestObj, JsonOptions());
-
-                    var request = new HttpRequestMessage(
-                        HttpMethod.Post,
-                        baseUrl + "/completions");
-
-                    request.Content = new StringContent(
-                        requestJson,
-                        Encoding.UTF8,
-                        "application/json");
-
-                    var response = http.SendAsync(request).Result;
-                    string responseBody = response.Content.ReadAsStringAsync().Result;
-
-                    ret[0] = response.StatusCode.ToString();
-
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        ret[1] = ExtractError(responseBody, response.ReasonPhrase);
-                        return ret;
-                    }
-
-                    var data = JsonSerializer.Deserialize<CompletionResponse>(
-                        responseBody,
-                        JsonOptions());
-
-                    string translated = data?.choices != null && data.choices.Length > 0
-                        ? data.choices[0].text
-                        : "";
-
-                    translated = CleanOutput(translated);
-
-                    if (string.IsNullOrWhiteSpace(translated))
-                    {
-                        ret[0] = "";
-                        ret[1] = "LM Studio returned empty translation.";
-                        return ret;
-                    }
-
-                    ret[1] = translated;
+                    ret[0] = "";
+                    ret[1] = "LM Studio model is not specified or loaded.";
                     return ret;
                 }
+
+                string prompt = BuildTranslateGemmaPrompt(
+                    sourceLang,
+                    targetLang,
+                    source,
+                    includeBos,
+                    bosToken);
+
+                var requestObj = new
+                {
+                    model = model,
+                    prompt = prompt,
+                    stream = false,
+                    temperature = temperature,
+                    top_p = topP,
+                    max_tokens = maxTokens,
+                    stop = new[]
+                    {
+                        "<end_of_turn>",
+                        "<eos>"
+                    }
+                };
+
+                string requestJson = JsonSerializer.Serialize(requestObj, JsonOptions());
+
+                var request = new HttpRequestMessage(
+                    HttpMethod.Post,
+                    baseUrl + "/completions");
+
+                request.Content = new StringContent(
+                    requestJson,
+                    Encoding.UTF8,
+                    "application/json");
+
+                var response = http.SendAsync(request).Result;
+                string responseBody = response.Content.ReadAsStringAsync().Result;
+
+                ret[0] = response.StatusCode.ToString();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    ret[1] = ExtractError(responseBody, response.ReasonPhrase);
+                    return ret;
+                }
+
+                var data = JsonSerializer.Deserialize<CompletionResponse>(
+                    responseBody,
+                    JsonOptions());
+
+                string translated = data?.choices != null && data.choices.Length > 0
+                    ? data.choices[0].text
+                    : "";
+
+                translated = CleanOutput(translated);
+
+                if (string.IsNullOrWhiteSpace(translated))
+                {
+                    ret[0] = "";
+                    ret[1] = "LM Studio returned empty translation.";
+                    return ret;
+                }
+
+                ret[1] = translated;
+                return ret;
             }
             catch (TaskCanceledException)
             {
                 ret[0] = "";
                 ret[1] = "Request timeout. Check LM Studio server and loaded model.";
+                return ret;
+            }
+            catch (HttpRequestException e)
+            {
+                ret[0] = "";
+                ret[1] = "Cannot connect to LM Studio local server: " + e.Message;
                 return ret;
             }
             catch (Exception e)
