@@ -12,6 +12,13 @@ TRALE本体のソースコードは含みません。
 https://trale.org/
 <br><br>
 
+# Official dll project
+trale.orgにて配布しているdllのプロジェクトを追加しました。
+
+"Offline_OPUSMT"に関しては、python経由で翻訳を実行しているdllとなります。
+呼び出し先はTRALE本体に同梱されているスクリプトコードをご確認ください。
+TRALE ver1.26.4.09 (ローカル翻訳付き)
+
 # JSON File
 
 ## dllに対する設定はJSONファイルで定義されます。
