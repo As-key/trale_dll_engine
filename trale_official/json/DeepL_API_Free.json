@@ -1,0 +1,298 @@
+{
+	"Info": {
+		"name": "DeepL API Free V2 (ps1)",
+		"value": "DeepL_API_Free.ps1",
+		"note": "Translation using the API of DeepL free.(Script version 1.1)"
+	},
+	"Option": [
+		{
+			"name": "Auth_key",
+			"value": "",
+			"note": "Set the Auth key that you obtained on the account page of DeepL."
+		}
+	],
+	"SourceLanguage": [
+		{
+			"name": "auto",
+			"value": "AUTO",
+			"note": "Auto"
+		},
+		{
+			"name": "bg",
+			"value": "BG",
+			"note": "Bulgarian"
+		},
+		{
+			"name": "cs",
+			"value": "CS",
+			"note": "Czech"
+		},
+		{
+			"name": "da",
+			"value": "DA",
+			"note": "Danish"
+		},
+		{
+			"name": "de",
+			"value": "DE",
+			"note": "German"
+		},
+		{
+			"name": "el",
+			"value": "EL",
+			"note": "Greek"
+		},
+		{
+			"name": "en",
+			"value": "EN",
+			"note": "English"
+		},
+		{
+			"name": "es",
+			"value": "ES",
+			"note": "Spanish"
+		},
+		{
+			"name": "et",
+			"value": "ET",
+			"note": "Estonian"
+		},
+		{
+			"name": "fi",
+			"value": "FI",
+			"note": "Finnish"
+		},
+		{
+			"name": "fr",
+			"value": "FR",
+			"note": "French"
+		},
+		{
+			"name": "hu",
+			"value": "HU",
+			"note": "Hungarian"
+		},
+		{
+			"name": "it",
+			"value": "IT",
+			"note": "Italian"
+		},
+		{
+			"name": "ja",
+			"value": "JA",
+			"note": "Japanese"
+		},
+		{
+			"name": "lt",
+			"value": "LT",
+			"note": "Lithuanian"
+		},
+		{
+			"name": "lv",
+			"value": "LV",
+			"note": "Latvian"
+		},
+		{
+			"name": "nl",
+			"value": "NL",
+			"note": "Dutch"
+		},
+		{
+			"name": "pl",
+			"value": "PL",
+			"note": "Polish"
+		},
+		{
+			"name": "pt",
+			"value": "PT",
+			"note": "Portuguese"
+		},
+		{
+			"name": "ro",
+			"value": "RO",
+			"note": "Romanian"
+		},
+		{
+			"name": "ru",
+			"value": "RU",
+			"note": "Russian"
+		},
+		{
+			"name": "sk",
+			"value": "SK",
+			"note": "Slovak"
+		},
+		{
+			"name": "sl",
+			"value": "SL",
+			"note": "Slovenian"
+		},
+		{
+			"name": "sv",
+			"value": "SV",
+			"note": "Swedish"
+		},
+		{
+			"name": "tr",
+			"value": "TR",
+			"note": "Turkish"
+		},
+		{
+			"name": "uk",
+			"value": "UK",
+			"note": "Ukrainian"
+		},
+		{
+			"name": "zh",
+			"value": "ZH",
+			"note": "Chinese"
+		}
+	],
+	"TargetLanguage": [
+		{
+			"name": "bg",
+			"value": "BG",
+			"note": "Bulgarian"
+		},
+		{
+			"name": "cs",
+			"value": "CS",
+			"note": "Czech"
+		},
+		{
+			"name": "da",
+			"value": "DA",
+			"note": "Danish"
+		},
+		{
+			"name": "de",
+			"value": "DE",
+			"note": "German"
+		},
+		{
+			"name": "el",
+			"value": "EL",
+			"note": "Greek"
+		},
+		{
+			"name": "en",
+			"value": "EN-US",
+			"note": "English"
+		},
+		{
+			"name": "en-gb",
+			"value": "EN-GB",
+			"note": "English(British)"
+		},
+		{
+			"name": "en-us",
+			"value": "EN-US",
+			"note": "English(American)"
+		},
+		{
+			"name": "es",
+			"value": "ES",
+			"note": "Spanish"
+		},
+		{
+			"name": "et",
+			"value": "ET",
+			"note": "Estonian"
+		},
+		{
+			"name": "fi",
+			"value": "FI",
+			"note": "Finnish"
+		},
+		{
+			"name": "fr",
+			"value": "FR",
+			"note": "French"
+		},
+		{
+			"name": "hu",
+			"value": "HU",
+			"note": "Hungarian"
+		},
+		{
+			"name": "it",
+			"value": "IT",
+			"note": "Italian"
+		},
+		{
+			"name": "ja",
+			"value": "JA",
+			"note": "Japanese"
+		},
+		{
+			"name": "lt",
+			"value": "LT",
+			"note": "Lithuanian"
+		},
+		{
+			"name": "lv",
+			"value": "LV",
+			"note": "Latvian"
+		},
+		{
+			"name": "nl",
+			"value": "NL",
+			"note": "Dutch"
+		},
+		{
+			"name": "pl",
+			"value": "PL",
+			"note": "Polish"
+		},
+		{
+			"name": "pt-pt",
+			"value": "PT-PT",
+			"note": "Portuguese(all)"
+		},
+		{
+			"name": "pt-br",
+			"value": "PT-BR",
+			"note": "Portuguese(Brazilian)"
+		},
+		{
+			"name": "ro",
+			"value": "RO",
+			"note": "Romanian"
+		},
+		{
+			"name": "ru",
+			"value": "RU",
+			"note": "Russian"
+		},
+		{
+			"name": "sk",
+			"value": "SK",
+			"note": "Slovak"
+		},
+		{
+			"name": "sl",
+			"value": "SL",
+			"note": "Slovenian"
+		},
+		{
+			"name": "sv",
+			"value": "SV",
+			"note": "Swedish"
+		},
+		{
+			"name": "tr",
+			"value": "TR",
+			"note": "Turkish"
+		},
+		{
+			"name": "uk",
+			"value": "UK",
+			"note": "Ukrainian"
+		},
+		{
+			"name": "zh",
+			"value": "ZH",
+			"note": "Chinese"
+		}
+	]
+}

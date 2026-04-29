@@ -1,0 +1,64 @@
+{
+	"Info": {
+		"name": "Chat GPT API (dll)",
+		"value": "ChatGPT_API.dll",
+		"note": "Translation using the API of Chat GPT.(Script version 2.0)"
+	},
+	"Option": [
+		{
+			"name": "Auth_key",
+			"value": "",
+			"note": "Set the Auth key (secret key) that you obtained on the account page of Chat GPT."
+		},
+		{
+			"name": "Model",
+			"value": "gpt-3.5-turbo",
+			"note": "Specify the model version of ChatGPT."
+		},
+		{
+			"name": "Explanation",
+			"value": "I will now pass on the text and ask you to proofread the text in the same language. Please do not translate.",
+			"note": "Explanation of the process to ask ChatGPT."
+		}
+	],
+	"SourceLanguage": [
+		{ "name": "de", "value": "de", "note": "German" },
+		{ "name": "en", "value": "en", "note": "English" },
+		{ "name": "en-gb", "value": "en", "note": "English (British)" },
+		{ "name": "en-us", "value": "en", "note": "English (American)" },
+		{ "name": "es", "value": "es", "note": "Spanish" },
+		{ "name": "fr", "value": "fr", "note": "French" },
+		{ "name": "fr-ca", "value": "fr-ca", "note": "French (Canada)" },
+		{ "name": "it", "value": "it", "note": "Italian" },
+		{ "name": "ja", "value": "ja", "note": "Japanese" },
+		{ "name": "ko", "value": "ko", "note": "Korean" },
+		{ "name": "nl", "value": "nl", "note": "Dutch" },
+		{ "name": "pt", "value": "pt", "note": "Portuguese" },
+		{ "name": "pt-br", "value": "pt-br", "note": "Portuguese (Brazil)" },
+		{ "name": "pt-pt", "value": "pt-pt", "note": "Portuguese (Portugal)" },
+		{ "name": "ru", "value": "ru", "note": "Russian" },
+		{ "name": "zh", "value": "lzh", "note": "Chinese" },
+		{ "name": "zh-cn", "value": "zh-Hans", "note": "Chinese (Simplified)" },
+		{ "name": "zh-tw", "value": "zh-Hant", "note": "Chinese (Traditional)" }
+	],
+	"TargetLanguage": [
+		{ "name": "de", "value": "de", "note": "German" },
+		{ "name": "en", "value": "en", "note": "English" },
+		{ "name": "en-gb", "value": "en", "note": "English (British)" },
+		{ "name": "en-us", "value": "en", "note": "English (American)" },
+		{ "name": "es", "value": "es", "note": "Spanish" },
+		{ "name": "fr", "value": "fr", "note": "French" },
+		{ "name": "fr-ca", "value": "fr-ca", "note": "French (Canada)" },
+		{ "name": "it", "value": "it", "note": "Italian" },
+		{ "name": "ja", "value": "ja", "note": "Japanese" },
+		{ "name": "ko", "value": "ko", "note": "Korean" },
+		{ "name": "nl", "value": "nl", "note": "Dutch" },
+		{ "name": "pt", "value": "pt", "note": "Portuguese" },
+		{ "name": "pt-br", "value": "pt-br", "note": "Portuguese (Brazil)" },
+		{ "name": "pt-pt", "value": "pt-pt", "note": "Portuguese (Portugal)" },
+		{ "name": "ru", "value": "ru", "note": "Russian" },
+		{ "name": "zh", "value": "lzh", "note": "Chinese" },
+		{ "name": "zh-cn", "value": "zh-Hans", "note": "Chinese (Simplified)" },
+		{ "name": "zh-tw", "value": "zh-Hant", "note": "Chinese (Traditional)" }
+	]
+}

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DeepL_API_Free": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

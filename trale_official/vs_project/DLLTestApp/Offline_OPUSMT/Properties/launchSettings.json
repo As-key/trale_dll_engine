@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DeepL_API_Pro": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

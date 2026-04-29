@@ -1,0 +1,87 @@
+{
+  "Info": {
+    "name": "LM Studio TRALE",
+    "value": "LMStudio_TRALE.dll",
+    "note": "Translation using TranslateGemma through LM Studio local OpenAI-compatible Completions API. Set LM Studio Prompt Template to Empty."
+  },
+
+  "Option": [
+    {
+      "name": "BaseUrl",
+      "value": "http://127.0.0.1:1234/v1",
+      "note": "LM Studio OpenAI-compatible API base URL."
+    },
+    {
+      "name": "Model",
+      "value": "",
+      "note": "Model ID. If empty, the first loaded model from LM Studio will be used."
+    },
+    {
+      "name": "AutoUseFirstModel",
+      "value": "true",
+      "note": "If Model is empty, automatically use the first loaded model returned by /v1/models."
+    },
+    {
+      "name": "TimeoutSeconds",
+      "value": "180",
+      "note": "HTTP request timeout in seconds."
+    },
+    {
+      "name": "Temperature",
+      "value": "0",
+      "note": "Sampling temperature. 0 is recommended for translation."
+    },
+    {
+      "name": "TopP",
+      "value": "1",
+      "note": "Top-p sampling value."
+    },
+    {
+      "name": "MaxTokens",
+      "value": "256",
+      "note": "Maximum output tokens. Increase for long cells."
+    },
+    {
+      "name": "IncludeBos",
+      "value": "true",
+      "note": "Add BOS token at the beginning of the TranslateGemma prompt."
+    },
+    {
+      "name": "BosToken",
+      "value": "<bos>",
+      "note": "BOS token used by the loaded Gemma model."
+    }
+  ],
+
+  "SourceLanguage": [
+    { "name": "ja", "value": "Japanese (ja)", "note": "Japanese" },
+    { "name": "en", "value": "English (en)", "note": "English" },
+    { "name": "zh_cn", "value": "Chinese (zh-Hans)", "note": "Chinese Simplified" },
+    { "name": "zh_tw", "value": "Chinese (zh-Hant)", "note": "Chinese Traditional" },
+    { "name": "ko", "value": "Korean (ko)", "note": "Korean" },
+    { "name": "fr", "value": "French (fr)", "note": "French" },
+    { "name": "de", "value": "German (de)", "note": "German" },
+    { "name": "es", "value": "Spanish (es)", "note": "Spanish" },
+    { "name": "it", "value": "Italian (it)", "note": "Italian" },
+    { "name": "pt", "value": "Portuguese (pt)", "note": "Portuguese" },
+    { "name": "ru", "value": "Russian (ru)", "note": "Russian" },
+    { "name": "vi", "value": "Vietnamese (vi)", "note": "Vietnamese" },
+    { "name": "th", "value": "Thai (th)", "note": "Thai" }
+  ],
+
+  "TargetLanguage": [
+    { "name": "ja", "value": "Japanese (ja)", "note": "Japanese" },
+    { "name": "en", "value": "English (en)", "note": "English" },
+    { "name": "zh_cn", "value": "Chinese (zh-Hans)", "note": "Chinese Simplified" },
+    { "name": "zh_tw", "value": "Chinese (zh-Hant)", "note": "Chinese Traditional" },
+    { "name": "ko", "value": "Korean (ko)", "note": "Korean" },
+    { "name": "fr", "value": "French (fr)", "note": "French" },
+    { "name": "de", "value": "German (de)", "note": "German" },
+    { "name": "es", "value": "Spanish (es)", "note": "Spanish" },
+    { "name": "it", "value": "Italian (it)", "note": "Italian" },
+    { "name": "pt", "value": "Portuguese (pt)", "note": "Portuguese" },
+    { "name": "ru", "value": "Russian (ru)", "note": "Russian" },
+    { "name": "vi", "value": "Vietnamese (vi)", "note": "Vietnamese" },
+    { "name": "th", "value": "Thai (th)", "note": "Thai" }
+  ]
+}

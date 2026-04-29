@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ChatGPT_API": {
+      "commandName": "Project",
+      "nativeDebugging": false,
+      "remoteDebugEnabled": false
+    }
+  }
+}
